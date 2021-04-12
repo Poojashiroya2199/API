@@ -1,0 +1,25 @@
+{
+    "firstName": "Drashti",
+    "lastName": "Pokiya",
+    "userName": "Drashti Pokiya",
+    "phoneNumber": "1234567890",
+    "email": "pokiyadrashti29@gmail.com",
+    "password": "Drashti@123",
+    "userType": 1,
+    "role": {
+        "jfean": "edsk"
+    },
+    "joining": "02/01/2022",
+    "title": "sfsgc",
+    "description": "sgzegs",
+    "minExperience": 0,
+    "minCompensation": 3,
+    "maxCompensation": 6,
+    "gender": 1,
+    "dob": "02-02-1999",
+    "adress": {
+        "add1": "surat"
+    },
+    "applicationStatus": 1,
+    "designation": "kjwfnl"
+}
