@@ -1,11 +1,10 @@
 const mongoose=require("mongoose");
-const Department=require("./../model/deparment");
 const userProfileSchema=new mongoose.Schema({
     gender:{
         type:Number,
     },
     dob:{
-        type:String
+        type:Date
     },
     address:{
         type:Object

@@ -19,7 +19,7 @@ module.exports=()=>{
             next(new RolesCreationError("DB error"))
         })
     })
-    rolesApi.put("/;id",(req,res,next)=>{
+    rolesApi.put("/:id",(req,res,next)=>{
         console.log(req.body,req.role)
         updateRole(req.body,req.role)
         .then(id=>res.status(200).json({

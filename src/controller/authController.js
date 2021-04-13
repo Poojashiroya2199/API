@@ -25,9 +25,9 @@ module.exports=()=>{
     })
   
 
-    authApi.get("/logout",authenticate,(req,res,next)=>{
-       console.log("User context",req.user);
-       console.log(req.accessToken);
+    authApi.get("/logout",(req,res,next)=>{
+      // console.log("User context",req.user);
+      // console.log(req.accessToken);
        logoutUser(req.accessToken)
        .then(data=>{
            res.status(200).json({

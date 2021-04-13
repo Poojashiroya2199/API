@@ -29,11 +29,11 @@ const generateAccessToken= (userContext)=>{
 const authenticate=(req,res,next)=>{
     console.log(req);
    const auth=req.get("Authorization");
-   console.log(auth);
-   if(!auth) throw new AuthorizationError({
-       code:"ATR-01",
-       message:"Authorization not included"
-   })
+//    console.log(auth);
+//    if(!auth) throw new AuthorizationError({
+//        code:"ATR-01",
+//        message:"Authorization not included"
+//    })
    const accessToken=auth.split(" ")[1];
    console.log(accessToken);
    let userContext;
