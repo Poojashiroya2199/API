@@ -1,4 +1,100 @@
-body{
-    background-color: white;
-    /* background-image: none; */
+
+.dashboardcontainer{
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    vertical-align: middle;
+}
+
+/* sidebar */
+.adminkitcontainer{
+    width:25%;
+    background-color: #222e3c;
+    color:white;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.hideadminkitcontainer{
+    display: none;
+    width:0%;
+    background-color: #222e3c;
+    color:white;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* dashboard */
+.maindashboard{
+    width: 75%;
+    overflow-x: hidden;
+    vertical-align: middle;
+    padding-top:15px;
+    height:100%;
+}
+.fulldashboard{
+    width: 100%;
+    overflow-x: hidden;
+    vertical-align: middle;
+    padding-top:15px;
+    height:100%;
+}
+
+/* header of dashboard */
+.headercontainer{
+    display: flex;
+    justify-content: space-between;
+    vertical-align: middle;
+} 
+.menuicon{
+    color:#222e3c;
+    margin:0 10px;
+}
+.headerbadge{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notification{
+    color:gray;
+    margin:0 10px;
+}
+.chaticon{
+    color:gray;
+}
+.searchinput{
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #f7f7fc;
+}
+.search{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:darkgray
+}
+.search div{
+    background-color:#f7f7fc ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+}
+
+hr{
+    margin-bottom: 0;
+}
+/* main */
+/* part1ofmain */
+main{
+    background-color: #f7f7fc;
+}
+.part1ofmain{
+    display: flex;
+    justify-content: space-between;
+    padding:10px 20px;
 }

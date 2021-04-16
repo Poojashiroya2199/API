@@ -9,6 +9,7 @@ module.exports=()=>{
      body("email").isEmail(),
     body("password").notEmpty().isLength({min:6}).isAlphanumeric(),
     body("firstName").notEmpty().isLength({min:3,max:25}),
+    body("lastName").notEmpty().isLength({min:3,max:25}),
     body("userName").notEmpty().isLength({min:3,max:25}),
     (req,res,next)=>{
         //validate post data
@@ -16,11 +17,11 @@ module.exports=()=>{
         const erros=validationResult(req.body);
         if(!erros.isEmpty()){
             console.log("user data is invalid");
+            // res.send("user data is invalid");
             throw new UserValidationError(erros.errors)
         }
         console.log("validate data");
         next();
-
     })
     //get user data
     userMiddleware.post("/",(req,res,next)=>{
@@ -28,7 +29,10 @@ module.exports=()=>{
         .then(data=>{
             console.log(data+"hi");
             if(!data)next()
-            else throw new UserCreationError("User already exist, please sign in");
+            else {
+                res.send("User already exist, please sign in")
+                throw new UserCreationError("User already exist, please sign in");
+            }
         })
         .catch(err=>{
             console.log(err);

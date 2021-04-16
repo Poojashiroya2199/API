@@ -8,7 +8,10 @@ module.exports=()=>{
         console.log("User Context",req.user);
         comparePassword(req.body.password,req.user.password)
         .then(isEqual=>{
-            if(!isEqual)throw new AuthenticationError({code:"ATH-03",message:"password is incorrect"});
+            if(!isEqual){
+                res.send("password is incorrect")
+                throw new AuthenticationError({code:"ATH-03",message:"password is incorrect"});
+            }
             generateAccessToken(req.user)
             .then(accessToken=>{
                 res.setHeader("Authorization",`Bearer ${accessToken}`)

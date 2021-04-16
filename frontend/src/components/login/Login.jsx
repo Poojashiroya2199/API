@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Login(props){
 
     const [user,setuser]=useState({username:"",password:""});
+    const [error,setError]=useState("");
     const handlechange=(property,event)=>{
         const copyuser={...user};
         copyuser[property]=event.target.value;
@@ -20,15 +21,21 @@ export default function Login(props){
 
         axios.post("http://localhost:5000/v1/auth/login",userdata)
         .then(res=>{
-            console.log(res.data);
+            console.log(res);
+            if(res.data!=="User doesn't exists, please sign up" && res.data!=="password is incorrect"){
+               setError()
             props.history.push("/");
+            }
+            if(res.data==="User doesn't exists, please sign up" || res.data==="password is incorrect"){
+                setError(res.data);
+            }
         })
         .catch(error=>{
             console.log(error);
         })
     }
     return (
-            <>
+            <div className="formcontainer">
             <div className="container">
             <form>
                 <h2 className="heading">Sign In</h2>
@@ -50,9 +57,8 @@ export default function Login(props){
                 onChange={(event)=>handlechange("password",event)}
                 />
                 <br />
-                <Link to="sfsu" className="link">
+                <p>{error}</p>
                 <input type="button" value="Log In" className="btn" onClick={handlesubmit} />
-                </Link>
                 <br/>
                 <div className="links">
                 <Link to="res" className="link ">Reset Password</Link>
@@ -63,6 +69,6 @@ export default function Login(props){
                 </p>
             </form>
         </div>
-        </>
+        </div>
     )
 }

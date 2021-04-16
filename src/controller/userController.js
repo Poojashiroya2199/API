@@ -49,7 +49,11 @@ module.exports=()=>{
                 uuid:data,
                 message:"User created Successfully"
                })
-             }).catch(err=>console.log(err));
+             }).catch(err=>{
+                console.log("find error"); 
+                console.log(err)
+                res.send("Please fill up data correctly");
+             });
         })
         .catch(err=>{
             console.log(err);

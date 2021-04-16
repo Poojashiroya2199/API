@@ -15,11 +15,11 @@ const userProfileSchema=new mongoose.Schema({
     },
     role:{
         type:Object,
-        required:true
+        // required:true
     },
     joining:{
         type:Date,
-        required:true
+        // required:true
     }
 });
 

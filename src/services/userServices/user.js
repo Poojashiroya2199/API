@@ -15,6 +15,7 @@ const createUser=(data)=>{
     console.log(data);
     return user.save().then(user=>user._id).catch(err=>{
         console.log(err);
+        // res.send("User creation failed");
         throw new UserCreationError("User creation failed");
     })
 }

@@ -3,7 +3,7 @@ const mongoose=require("mongoose");
 const roleSchema = new mongoose.Schema({
   title: {
     type: String,
-    requrired: true,
+    // requrired: true,
   },
   description: {
     type: String,

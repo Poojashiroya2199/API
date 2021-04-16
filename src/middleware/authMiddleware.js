@@ -18,7 +18,10 @@ module.exports=()=>{
         }
         User.findOne({userName:username})
         .then(data=>{
-            if(!data) throw new AuthenticationError({code:"ATH-02",message:"User doesnt exists, Please sign up"})
+            if(!data) {
+                res.send("User doesn't exists, please sign up");
+                throw new AuthenticationError({code:"ATH-02",message:"User doesnt exists, Please sign up"})
+            }
             req.user=data;
             next();
         })

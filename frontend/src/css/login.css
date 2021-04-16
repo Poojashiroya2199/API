@@ -1,5 +1,4 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+ .formcontainer{
     background-image: url("./../images/laptop.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,12 +6,13 @@ body {
     justify-content: center;
     align-items: center;
     vertical-align: middle;
+    width:100%;
   }
   .container {
-      margin-top:50px;
+      margin:120px 0;
       vertical-align: middle;
     background-color: rgba(4, 49, 65, 0.7);
-    width: 100%;
+    width:200px;
     padding: 10px;
     padding-bottom: 30px;
     padding-right: 20px;
