@@ -6,10 +6,15 @@ const router=require("./router");
 const initialiseDB=require("./db");
 initialiseDB();
 const app=express();
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}));
+app.set("view engine", "ejs");
+
 app.use(cors({exposedHeaders:["Authorization"]}));
 app.use("/v1",router());
+
+
 
 app.get("/",(req,res)=>{
     res.send("hello");

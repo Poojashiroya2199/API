@@ -8,12 +8,15 @@
 
 /* sidebar */
 .adminkitcontainer{
-    width:25%;
+    width:22%;
     background-color: #222e3c;
     color:white;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    position:fixed;
+    padding:2%;
+    padding-left: 0;
 }
 .hideadminkitcontainer{
     display: none;
@@ -24,14 +27,41 @@
     overflow-x: hidden;
     overflow-y: scroll;
 }
-
+.adminkitcontainer h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.adminkitcontainer ul{
+    list-style-type: none;
+}
+.adminkitcontainer ul li{
+    display:flex;
+    justify-content:left;
+    align-items: center;
+}
+.adminkitcontainer ul li h3{
+    margin-left:15px;
+}
+.svg{
+    width: 30px;
+    height:30px;
+}
+.link{
+    text-decoration: none;
+    color:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 /* dashboard */
 .maindashboard{
-    width: 75%;
+    width: 76%;
     overflow-x: hidden;
     vertical-align: middle;
     padding-top:15px;
     height:100%;
+    margin-left: 25%;
 }
 .fulldashboard{
     width: 100%;
@@ -39,6 +69,7 @@
     vertical-align: middle;
     padding-top:15px;
     height:100%;
+    margin-left: 0;
 }
 
 /* header of dashboard */
@@ -92,9 +123,17 @@ hr{
 /* part1ofmain */
 main{
     background-color: #f7f7fc;
+    margin-right:20px;
+    padding:10px;
 }
 .part1ofmain{
     display: flex;
     justify-content: space-between;
     padding:10px 20px;
+}
+.profileimage{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    margin:0 5px;
 }

@@ -16,7 +16,8 @@ module.exports=()=>{
             .then(accessToken=>{
                 res.setHeader("Authorization",`Bearer ${accessToken}`)
                 res.status(200).json({
-                    id:req.user._id
+                    id:req.user._id,
+                    accessToken:accessToken
                 })
                 
             })

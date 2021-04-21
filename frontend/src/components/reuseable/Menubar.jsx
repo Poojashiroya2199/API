@@ -9,6 +9,7 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import axios from "axios";
 // import { grey } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Menubar(props) {
-    const {title,list}=props;
+  // console.log(props);
+  const {title,list}=props;
+  // console.log(title);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -34,7 +37,18 @@ export default function Menubar(props) {
     setarrow(handlearrow=>!handlearrow);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event,el) => {
+    // console.log(el);
+    if(el==="logout"){
+      axios.get("http://localhost:5000/v1/auth/logout")
+      .then(res=>{
+        // console.log(res);
+        localStorage.removeItem("accessToken");
+        props.history.push("/login");
+      })
+      .catch(err=>console.log(err));
+
+    }
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -83,7 +97,7 @@ export default function Menubar(props) {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     {
                         list.map((el,index)=>(
-                            <MenuItem onClick={handleClose}>{el}</MenuItem>
+                            <MenuItem key={index} onClick={(event)=>handleClose(event,el)} >{el}</MenuItem>
                         ))
                     }
                   </MenuList>

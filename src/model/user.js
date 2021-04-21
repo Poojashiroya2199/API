@@ -18,10 +18,10 @@ const userSchema=new mongoose.Schema({
     phoneNumber:{
         type:Number,
         required:true,
-        validate:{
-            validator:(value) => /\d{10}/.test(value)
-        },
-        message: props => `${props.value} is not a valid phone number`
+            // validate:{
+            //     validator:(value) => /\d{10}/.test(value)
+            // },
+            // message: props => `${props.value} is not a valid phone number`
     },
     email:{
         unique:true,
@@ -42,6 +42,18 @@ const userSchema=new mongoose.Schema({
     userProfile:{
         type:[mongoose.Schema.Types.ObjectId],
         ref:'UserProfile'
+    },
+    roleofuser:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:'Role'
+    },
+    department:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:"Department"
+    },
+    auth:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:'Auth'
     },
     createdAt:{
         type:Date,

@@ -6,8 +6,8 @@ import {BrowserRouter,Route,Switch} from "react-router-dom";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import Home from "./components/home/Home";
-import Recruitement from "./components/recruitement/Recruitement";
 function App() {
+  
   return (
     <>
      {/* <Provider store={store}> */}
@@ -15,8 +15,9 @@ function App() {
        <Switch>
          <Route path="/login" render={(props)=><Login {...props}/>}/>
          <Route path="/signup" render={(props)=><Signup {...props}/>}/>
-        <Route path="/" exact render={(props)=><Home {...props}/>}/>
-        <Route path="/recruitement" render={(props)=><Recruitement {...props}/>}/>
+        
+        {/* <Route path="/recruitement" render={(props)=><Recruitement {...props}/>}/> */}
+        <Route path="/"  render={(props)=><Home {...props}/>}/>
         {/* <Redirect to="/login"/> */}
        </Switch>
        </BrowserRouter>

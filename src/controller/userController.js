@@ -2,8 +2,8 @@ const {Router}=require("express");
 const User=require("./../model/user");
 const {UserCreationError, InternalServerError}=require("./../util/errors");
 const {authenticate}=require("./../services/authServices/auth");
-const {encryptPassword,createUser,userById}=require("./../services/userServices/user");
-const createProfile =require("./../services/userServices/userProfile");
+const {encryptPassword,createUser,userById, updateUser}=require("./../services/userServices/user");
+const {createProfile,updateuserProfile,userProfileById} =require("./../services/userServices/userProfile");
 
 module.exports=()=>{
     const userApi=Router();
@@ -11,7 +11,7 @@ module.exports=()=>{
     //   console.log("I am handling get user request"+req.user);
       User.find()
       .then(data=>{
-          console.log(data);
+        //   console.log(data);
           res.status(200).send({data})
       })
       .catch(err=>{
@@ -21,7 +21,7 @@ module.exports=()=>{
     });
 
     userApi.get("/:id",(req,res,next)=>{
-        console.log(req.params.id);
+        // console.log(req.params.id);
         userById(req.params.id)
         .then(data=>res.status(200).json(data))
         .catch(err=>{
@@ -29,7 +29,14 @@ module.exports=()=>{
         next(new InternalServerError("unable to fetch"));
         });
     });
-
+    userApi.get("/profile/:id",(req,res,next)=>{
+        userProfileById(req,paramas.id)
+        .then(data=>res.status(200).json(data))
+        .catch(err=>{
+            console.log(err);
+            next(new InternalServerError("unable to fetch userprofile"));
+        });
+    });
     userApi.post("/",async (req,res,next)=>{
         const userProfile=req.body;
         // console.log(userProfile);
@@ -66,11 +73,17 @@ module.exports=()=>{
         // })
     })
 
-    userApi.put("/:id",(req,res)=>{
-        console.log("i am handling put user request")
-        res.json({
-            message:"PUT USER"+req.params.id
-        })
+    userApi.put("/profile/:id",async(req,res,next)=>{
+        console.log(req.params.id);
+        console.log(req.body);
+       await updateuserProfile(req.body,req.params.id)
+       .then(data=>{
+           console.log(data);
+           res.send("update profile");
+       })
+       .catch(err=>console.log(err))
+   
+        
     })
     userApi.delete("/:id",(req,res)=>{
         console.log("I am handling DELETE user Request");

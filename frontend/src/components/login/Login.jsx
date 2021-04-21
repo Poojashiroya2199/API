@@ -13,18 +13,20 @@ export default function Login(props){
         setuser(copyuser);
     }
 
-    const handlesubmit=()=>{
+    const handlesubmit=async()=>{
         const userdata={
             username:user.username,
             password:user.password
         };
 
-        axios.post("http://localhost:5000/v1/auth/login",userdata)
+     await axios.post("http://localhost:5000/v1/auth/login",userdata)
         .then(res=>{
             console.log(res);
             if(res.data!=="User doesn't exists, please sign up" && res.data!=="password is incorrect"){
-               setError()
-            props.history.push("/");
+               setError("");
+                localStorage.setItem("accessToken",res.data.id+" "+res.data.accessToken);
+               props.history.push("/",res.data);
+              
             }
             if(res.data==="User doesn't exists, please sign up" || res.data==="password is incorrect"){
                 setError(res.data);
@@ -35,7 +37,7 @@ export default function Login(props){
         })
     }
     return (
-            <div className="formcontainer">
+            <div className="logincontainer">
             <div className="container">
             <form>
                 <h2 className="heading">Sign In</h2>

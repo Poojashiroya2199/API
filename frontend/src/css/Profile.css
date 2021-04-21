@@ -1,0 +1,65 @@
+.profilelogo{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+}
+.profilecontent{
+    display: flex;
+}
+.profileheader{
+    display:flex;
+    padding:20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.profileheader div{
+    display: flex;
+    align-items: center;
+}
+.svg{
+    width: 30px;
+    height:30px;
+    margin-left:3px;
+}
+.userdata{
+    outline:none;
+    border:none;
+    background-color: white;
+    border-radius: 0;
+    width:auto;
+    margin: 5px;
+    font-size: large;
+    font-weight: bold;
+}
+.inputcontainer{
+    display: flex;
+    flex-direction: column;
+    width:40%;
+}
+.gendercontainer{
+    display: flex;
+}
+.gender{
+    margin:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gendercontainer:first-child{
+    margin-left:0;
+}
+.profiledatacontainer{
+    display: flex;
+}
+.profiledatacontainer span{
+    width:100px;
+}
+.profiledatacontainer input{
+    width:200px;
+    font-weight: lighter;
+}
+.profiledata{
+    border-bottom: 1px solid grey;
+    outline:none;
+    width:auto;
+}

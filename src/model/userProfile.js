@@ -20,7 +20,11 @@ const userProfileSchema=new mongoose.Schema({
     joining:{
         type:Date,
         // required:true
+    },
+    image:{
+        type:String
     }
+
 });
 
 const UserProfile=mongoose.model("UserProfile",userProfileSchema);

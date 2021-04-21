@@ -20,8 +20,20 @@ const createUser=(data)=>{
     })
 }
 
+
+const updateUser=async(newuser,id)=>{
+    return await User.findByIdAndUpdate({_id:id},newuser,{upsert:true,new:true})
+        .then(data=>{
+            // console.log(data);
+            return data;
+        })
+        .catch(err=>{
+            console.log("In service",err)
+        });
+};
 module.exports={
     encryptPassword,
     userById,
-    createUser
+    createUser,
+    updateUser
 }
