@@ -21,7 +21,7 @@ export default function Login(props){
 
      await axios.post("http://localhost:5000/v1/auth/login",userdata)
         .then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data!=="User doesn't exists, please sign up" && res.data!=="password is incorrect"){
                setError("");
                 localStorage.setItem("accessToken",res.data.id+" "+res.data.accessToken);

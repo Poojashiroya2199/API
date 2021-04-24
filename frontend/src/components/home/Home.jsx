@@ -25,15 +25,17 @@ function Menu(props){
 return <Menubar title={usertitle} list={contentlist} {...props}/>;
 }
 export default function Home(props){
-   // console.log(props);
+   console.log(props);
     let useraccess=localStorage.getItem("accessToken");
     let id=useraccess.split(" ");
     let userid=id[0];
     const [sidebar,setsidebar]=useState(true);
     const [user,setuser]=useState({});
+
     const handledashboard=()=>{
       setsidebar(!sidebar);
     }
+    
     const finduser=async()=>{
       await  axios.get("http://localhost:5000/v1/user/"+userid)
         .then(res=>{
@@ -41,6 +43,7 @@ export default function Home(props){
         })
         .catch(err=>console.log(err));
     }
+    
     useEffect(()=>{
         finduser();
     },
@@ -92,6 +95,7 @@ export default function Home(props){
                  </Badge>
                  <ChatBubbleOutlineIcon className="chaticon" color="inherit"/>
                  <img src={userimage} alt="profile" className="profileimage"/>
+                
                  <Menu {...props} title={user.userName}/>
                  </div>
                  </div>
@@ -100,7 +104,7 @@ export default function Home(props){
                 <main>
                   <Switch>
                       <Route path="/dashboard" render={(props)=><Analytics userdata={user} {...props}/>} />
-                      <Route path="/profile" render={(props)=><Profile userdata={user} {...props}/>}/>
+                      <Route path="/profile" render={(props)=><Profile userdata={user}  {...props}/>}/>
                       <Route path="/setting" render={(props)=><Setting userdata={user} {...props}/>}/> 
                       <Route path="/recruitement" render={(props)=><Recruitement userdata={user} {...props}/>}/>
                       <Redirect to="/dashboard"/>

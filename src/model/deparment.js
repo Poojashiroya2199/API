@@ -8,11 +8,11 @@ const departmentSchema = new mongoose.Schema({
         type:String,
     },
     users:{
-        type:[mongoose.Schema.Types.ObjectId],
+        type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
     roles:{
-        type:[mongoose.Schema.Types.ObjectId],
+        type:mongoose.Schema.Types.ObjectId,
         ref:'Role'
     }
 })

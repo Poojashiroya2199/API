@@ -5,12 +5,14 @@ const middleware=require("./middleware");
 const authController=require("./controller/authController");
 const rolesController=require("./controller/rolesController");
 const deptController=require("./controller/deptController");
+const userPrfileController=require("./controller/userProfileController");
 module.exports = ()=>{
     router.use(middleware());
     router.use("/auth",authController());
     router.use("/department",deptController());
     router.use("/roles",rolesController());
     router.use("/user",userController());
+    router.use("/user/profile",userPrfileController());
     router.use("/",(req,res)=>{
         res.send("router");
     });

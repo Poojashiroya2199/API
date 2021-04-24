@@ -17,7 +17,7 @@ module.exports=()=>{
         const erros=validationResult(req.body);
         if(!erros.isEmpty()){
             console.log("user data is invalid");
-            // res.send("user data is invalid");
+            res.send("user data is invalid");
             throw new UserValidationError(erros.errors)
         }
         console.log("validate data");

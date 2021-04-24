@@ -12,7 +12,7 @@ const roleSchema = new mongoose.Schema({
     type: Number,
   },
   department: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     ref:'Department',
   },
   minCompensation: {
@@ -24,7 +24,7 @@ const roleSchema = new mongoose.Schema({
 });
 
 
-const Role = mongoose.model('Role',roleSchema)
+const Role = mongoose.model("Role",roleSchema)
 
 
 module.exports= Role;

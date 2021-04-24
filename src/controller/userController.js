@@ -3,7 +3,9 @@ const User=require("./../model/user");
 const {UserCreationError, InternalServerError}=require("./../util/errors");
 const {authenticate}=require("./../services/authServices/auth");
 const {encryptPassword,createUser,userById, updateUser}=require("./../services/userServices/user");
-const {createProfile,updateuserProfile,userProfileById} =require("./../services/userServices/userProfile");
+const {createProfile} =require("./../services/userServices/userProfile");
+const { createRoles } = require("../services/roleServices/roles");
+const { createDepartment } = require("../services/deptServices/dept");
 
 module.exports=()=>{
     const userApi=Router();
@@ -29,24 +31,15 @@ module.exports=()=>{
         next(new InternalServerError("unable to fetch"));
         });
     });
-    userApi.get("/profile/:id",(req,res,next)=>{
-        userProfileById(req,paramas.id)
-        .then(data=>res.status(200).json(data))
-        .catch(err=>{
-            console.log(err);
-            next(new InternalServerError("unable to fetch userprofile"));
-        });
-    });
+   
     userApi.post("/",async (req,res,next)=>{
         const userProfile=req.body;
-        // console.log(userProfile);
         const userProfileId= await createProfile(userProfile);
-        // console.log(userProfileId);
-        const user= {...req.body,userProfile:userProfileId}
-        // console.log(user);
+        const userRoleId=await createRoles(userProfile);
+        const userDepartId= await createDepartment(userProfile);
+        const user= {...req.body,userProfile:userProfileId,roleofuser:userRoleId,userdept:userDepartId};
         encryptPassword(req.body.password)
         .then(hashedPassword=>{
-           // console.log(hashedPassword);
             createUser({
                 ...user,
                 password:hashedPassword
@@ -65,26 +58,11 @@ module.exports=()=>{
         .catch(err=>{
             console.log(err);
             next(err);
-        })
-    //    console.log(req.body);
-        console.log("i am handling post user request")
-        // res.json({
-        //     message:"Post USER"+req.params.id
-        // })
+        });
+        console.log("i am handling post user request");
     })
 
-    userApi.put("/profile/:id",async(req,res,next)=>{
-        console.log(req.params.id);
-        console.log(req.body);
-       await updateuserProfile(req.body,req.params.id)
-       .then(data=>{
-           console.log(data);
-           res.send("update profile");
-       })
-       .catch(err=>console.log(err))
    
-        
-    })
     userApi.delete("/:id",(req,res)=>{
         console.log("I am handling DELETE user Request");
         res.json({

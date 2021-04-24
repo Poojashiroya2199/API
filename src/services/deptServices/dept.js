@@ -2,7 +2,7 @@ const Department =require("./../../model/deparment");
 
 const createDepartment=(data)=>{
     const dept=new Department(data)
-    return dept.save().then(data=>data._id)
+    return dept.save().then(data=>data._id).catch(err=>console.log(err));
 }
 const updateDepartment=(newDepartment,oldDepartment)=>{
     const updatedData={...oldDepartment,...newDepartment}

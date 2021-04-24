@@ -2,7 +2,7 @@ const Role =require("./../../model/role");
 
 const createRoles=(data)=>{
     const role=new Role(data);
-    return role.save().then(data=>data._id);
+    return role.save().then(data=>data._id).catch(err=>console.log(err));;
 }
 
 const updateRole=(newRole,oldRole)=>{

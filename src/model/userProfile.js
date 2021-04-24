@@ -4,22 +4,21 @@ const userProfileSchema=new mongoose.Schema({
         type:Number,
     },
     dob:{
-        type:Date
+        type:String,
     },
     address:{
-        type:Object
+        type:String
     },
     department:{
-        type:[mongoose.Schema.Types.ObjectId],
+        type:mongoose.Schema.Types.ObjectId,
         ref:'Department'
     },
     role:{
-        type:Object,
+        type:String,
         // required:true
     },
     joining:{
-        type:Date,
-        // required:true
+        type:String,
     },
     image:{
         type:String

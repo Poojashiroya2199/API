@@ -34,7 +34,8 @@
 .inputcontainer{
     display: flex;
     flex-direction: column;
-    width:40%;
+    width:60%;
+    padding: 0 10px;
 }
 .gendercontainer{
     display: flex;
@@ -42,6 +43,7 @@
 .gender{
     margin:5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -62,4 +64,27 @@
     border-bottom: 1px solid grey;
     outline:none;
     width:auto;
+}
+.gendersvg{
+    width: 60px;
+    height:60px;
+    margin-left:5px;
+}
+.gender:hover{
+    transform: scale(1.1);
+}
+.gender >div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selectedgender{
+    border:2px solid gray;
+    width: 60px;
+    height:60px;
+    margin-left:5px;
+    padding:3px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    transform: scale(1.1);
 }

@@ -1,5 +1,5 @@
 const {Router}=require("express");
-const Roles=require("./../model/role");
+const Role=require("./../model/role");
 const {RolesCreationError}=require("./../util/errors");
 const {body,validationResult}=require("express-validator");
 
@@ -19,7 +19,7 @@ module.exports=()=>{
             throw new RolesCreationError("No request boddy available");
         }
         const id=req.params.id;
-        Roles.findById(id)
+        Role.findById(id)
         .then(data=>{
             if(!data){
                 throw new RolesCreationError("Error in updation");
@@ -28,8 +28,8 @@ module.exports=()=>{
             next()
         })
         .catch(err=>{
-            console.log("In middleware",error);
-            next(error.message)
+            console.log("In middleware",err);
+            next(err.message)
         })
     })
     return  rolesMiddleware;

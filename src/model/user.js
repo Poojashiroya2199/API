@@ -40,19 +40,19 @@ const userSchema=new mongoose.Schema({
         // message: props => `${props.value}  invalid user type`
     },
     userProfile:{
-        type:[mongoose.Schema.Types.ObjectId],
+        type:mongoose.Schema.Types.ObjectId,
         ref:'UserProfile'
     },
     roleofuser:{
-        type:[mongoose.Schema.Types.ObjectId],
+        type:mongoose.Schema.Types.ObjectId,
         ref:'Role'
     },
-    department:{
-        type:[mongoose.Schema.Types.ObjectId],
-        ref:"Department"
+    userdept:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Department'
     },
-    auth:{
-        type:[mongoose.Schema.Types.ObjectId],
+    userauth:{
+        type:mongoose.Schema.Types.ObjectId,
         ref:'Auth'
     },
     createdAt:{

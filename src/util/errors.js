@@ -78,7 +78,14 @@ class DeptCreationError extends Error{
         }))
     }
 }
-
+class UserProfileUpdationError extends Error{
+    constructor(errors){
+        super(JSON.stringify({
+            statusCode:404,
+            message:errors
+        }))
+    }
+}
 
 module.exports ={
     UserValidationError,
@@ -88,5 +95,6 @@ module.exports ={
     AuthenticationError,
     AuthorizationError,
     RolesCreationError,
-    DeptCreationError
+    DeptCreationError,
+    UserProfileUpdationError
 }
