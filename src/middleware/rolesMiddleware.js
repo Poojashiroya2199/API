@@ -32,5 +32,15 @@ module.exports=()=>{
             next(err.message)
         })
     })
+    rolesMiddleware.delete("/:id", (req,res,next)=>{
+        const id=req.params.id;
+        if(!id){
+            throw new RolesCreationError("user not available to delete");
+        }
+        else{
+            console.log("find user");
+            next();
+        }
+    })
     return  rolesMiddleware;
 }

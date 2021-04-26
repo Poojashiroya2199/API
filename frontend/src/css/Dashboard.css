@@ -1,0 +1,39 @@
+.dashboardimage{
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+}
+.table{
+    border:3px solid gray;
+    box-shadow: 5px 5px 5px 5px gray;
+    border-collapse: collapse;
+    border-radius: 10px;
+    padding:10px;
+    width:100%;
+}
+.table th, td{
+    border:2px solid midnightblue;
+    padding:10px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.table th, tr:nth-child(even){
+    background-color: lightgray;
+}
+.deletebtn{
+   
+    color:white;
+    padding:10px;
+    outline: none;
+    border:none;
+    border-radius: 5px;
+    background-image: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(3, 235, 255, 1) 0%,
+      rgba(152, 70, 242, 1) 100.2%
+    );
+}
+.deletebtn:hover{
+    background-image:none;
+    background-color: gray;
+}

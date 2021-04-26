@@ -27,9 +27,17 @@ const userProfileById=async(id)=>{
         console.log("In service",err);
     })
 }
+const deleteuserprofile=async(id)=>{
+    return await UserProfile.findByIdAndDelete({_id:id})
+    .then(data=>{
+        console.log(data);
+        return data;
+    }).catch(err=>console.log(err));
+}
 
 module.exports ={
     createProfile,
     updateuserProfile,
-    userProfileById
+    userProfileById,
+    deleteuserprofile
 };

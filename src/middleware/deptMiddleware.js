@@ -30,5 +30,16 @@ module.exports=()=>{
            next(error.message);
        })
    })
+
+   deptMiddleware.delete("/:id", (req,res,next)=>{
+    const id=req.params.id;
+    if(!id){
+        throw new DeptCreationError("user not available to delete");
+    }
+    else{
+        console.log("find user");
+        next();
+    }
+})
    return deptMiddleware;
 }

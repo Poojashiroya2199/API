@@ -36,25 +36,15 @@ module.exports=()=>{
         next();
         }
     })
-
-//    userProfileMiddleware.put("/:id",async(req,res,next)=>{
-//        console.log(req.params.id);
-//      await UserProfile.find({_id:req.params.id})
-//        .then(data=>{
-//         if(!data){
-//            next(UserProfileUpdationError("Error in updation"));
-//         }
-//         // console.log(data);
-//        else{
-//         req.userProfile=data.tojson();
-//         console.log(req.userProfile);
-//         next()
-//        }
-//     })
-//     .catch(err=>{
-//         // console.log("In middleware",err);
-//         next(err)
-//     })
-//    })
+    userProfileMiddleware.delete("/:id", (req,res,next)=>{
+        const id=req.params.id;
+        if(!id){
+            throw new UserProfileUpdationError("user not available to delete");
+        }
+        else{
+            console.log("find user");
+            next();
+        }
+    })
     return userProfileMiddleware;
 }

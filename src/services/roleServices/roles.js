@@ -17,8 +17,15 @@ const updateRole=(newRole,oldRole)=>{
             console.log("In service",err)
         });
 };
-
+const deleterole=async(id)=>{
+    return await Role.findByIdAndDelete({_id:id})
+    .then(data=>{
+        console.log(data);
+        return data;
+    }).catch(err=>console.log(err));
+}
 module.exports={
     updateRole,
-    createRoles
+    createRoles,
+    deleterole,
 }

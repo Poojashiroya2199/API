@@ -1,5 +1,5 @@
 const {Router}=require("express");
-const {createDepartment,updateDepartment}=require("./../services/deptServices/dept");
+const {createDepartment,updateDepartment,deletedepartment}=require("./../services/deptServices/dept");
 const {DeptCreationError, InternalServerError}=require("./../util/errors");
 
 module.exports=()=>{
@@ -29,6 +29,15 @@ module.exports=()=>{
             console.log(err);
             next(new InternalServerError("error in updation"));
         })
+    });
+    deptApi.delete("/:id",async(req,res)=>{
+        const id=req.params.id;
+        await deletedepartment(id)
+        .then(data=>{
+            console.log(data);
+            res.send(data);
+        })
+        .catch(err=>console.log(err));
     })
     return deptApi;
 }

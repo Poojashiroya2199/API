@@ -107,7 +107,7 @@ export default function Home(props){
                       <Route path="/profile" render={(props)=><Profile userdata={user}  {...props}/>}/>
                       <Route path="/setting" render={(props)=><Setting userdata={user} {...props}/>}/> 
                       <Route path="/recruitement" render={(props)=><Recruitement userdata={user} {...props}/>}/>
-                      <Redirect to="/dashboard"/>
+                      <Redirect to="/profile"/>
                  </Switch>
                        
                 </main>

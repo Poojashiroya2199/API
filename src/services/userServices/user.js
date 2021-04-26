@@ -31,9 +31,18 @@ const updateUser=async(newuser,id)=>{
             console.log("In service",err)
         });
 };
+
+const deleteuser=async(id)=>{
+    return await User.findByIdAndDelete({_id:id})
+    .then(data=>{
+        console.log(data);
+        return data;
+    }).catch(err=>console.log(err));
+}
 module.exports={
     encryptPassword,
     userById,
     createUser,
-    updateUser
+    updateUser,
+    deleteuser
 }

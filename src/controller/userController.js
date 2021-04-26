@@ -2,7 +2,7 @@ const {Router}=require("express");
 const User=require("./../model/user");
 const {UserCreationError, InternalServerError}=require("./../util/errors");
 const {authenticate}=require("./../services/authServices/auth");
-const {encryptPassword,createUser,userById, updateUser}=require("./../services/userServices/user");
+const {encryptPassword,createUser,userById, updateUser,deleteuser}=require("./../services/userServices/user");
 const {createProfile} =require("./../services/userServices/userProfile");
 const { createRoles } = require("../services/roleServices/roles");
 const { createDepartment } = require("../services/deptServices/dept");
@@ -13,8 +13,8 @@ module.exports=()=>{
     //   console.log("I am handling get user request"+req.user);
       User.find()
       .then(data=>{
-        //   console.log(data);
-          res.status(200).send({data})
+          console.log(data);
+          res.status(200).send(data)
       })
       .catch(err=>{
           console.log(err);
@@ -62,12 +62,25 @@ module.exports=()=>{
         console.log("i am handling post user request");
     })
 
-   
-    userApi.delete("/:id",(req,res)=>{
-        console.log("I am handling DELETE user Request");
-        res.json({
-            message:"DELETE USER"+req.params.id
+    userApi.put("/:id",async(req,res)=>{
+        // console.log(req.params.id);
+        // console.log(req.body);
+      await updateUser(req.body,req.params.id)
+       .then(data=>{
+           console.log(data);
+           res.send(data);
+       })
+       .catch(err=>console.log(err))     
+    })
+
+    userApi.delete("/:id",async(req,res)=>{
+        const id=req.params.id;
+        await deleteuser(id)
+        .then(data=>{
+            console.log(data);
+            res.send(data);
         })
+        .catch(err=>console.log(err));
     })
     return userApi;
 }

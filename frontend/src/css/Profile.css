@@ -5,6 +5,7 @@
 }
 .profilecontent{
     display: flex;
+    justify-content: space-around;
 }
 .profileheader{
     display:flex;
@@ -34,7 +35,7 @@
 .inputcontainer{
     display: flex;
     flex-direction: column;
-    width:60%;
+    width:35%;
     padding: 0 10px;
 }
 .gendercontainer{
@@ -88,3 +89,30 @@
     background-color: whitesmoke;
     transform: scale(1.1);
 }
+.updatebtn {
+    height: 40px;
+    width:auto;
+    background-image: linear-gradient(
+      109.6deg,
+      rgba(250, 165, 147, 1) 11.2%,
+      rgba(250, 149, 71, 1) 91.1%
+    );
+    font-size: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    margin: 10px 0;
+  }
+  .updatebtn:hover {
+    background-image: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(3, 235, 255, 1) 0%,
+      rgba(152, 70, 242, 1) 100.2%
+    );
+  }

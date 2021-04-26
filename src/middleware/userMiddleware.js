@@ -1,6 +1,6 @@
 const {Router}=require("express");
 const {body,validationResult} =require("express-validator");
-const {UserCreationError,UserValidationError} =require("./../util/errors");
+const {UserCreationError,UserValidationError,UserUpdationError} =require("./../util/errors");
 const User =require("./../model/user");
 module.exports=()=>{
     const userMiddleware=Router();
@@ -11,6 +11,7 @@ module.exports=()=>{
     body("firstName").notEmpty().isLength({min:3,max:25}),
     body("lastName").notEmpty().isLength({min:3,max:25}),
     body("userName").notEmpty().isLength({min:3,max:25}),
+    body("phoneNumber").notEmpty().isNumeric().isLength(10),
     (req,res,next)=>{
         //validate post data
     //    console.log(req.body);
@@ -39,6 +40,35 @@ module.exports=()=>{
             next(err);
         });
         // res.send("successful");
+    });
+
+
+    userMiddleware.put("/:id",
+    body("email").isEmail(),
+    body("userName").notEmpty().isLength({min:3,max:25}),
+    body("phoneNumber").notEmpty().isNumeric().isLength(10),
+    (req,res,next)=>{
+        const errors=validationResult(req.body);
+        if(!errors.isEmpty()){
+            // console.log("user profile updated data in valid");
+            throw new UserUpdationError("please provide valid data");
+            // res.send("Invalid userProfile data");
+        }
+        else{
+            console.log("valid user Profile");
+        next();
+        }
+    })
+
+    userMiddleware.delete("/:id", (req,res,next)=>{
+        const id=req.params.id;
+        if(!id){
+            throw new UserUpdationError("user not available to delete");
+        }
+        else{
+            console.log("find user");
+            next();
+        }
     })
     return userMiddleware;
 }

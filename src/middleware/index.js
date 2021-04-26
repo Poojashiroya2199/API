@@ -11,6 +11,6 @@ module.exports=()=>{
     middleware.use("/department",deptMiddleware());
     middleware.use("/roles",rolesMiddleware());
     middleware.use("/user",userMiddleware());
-    middleware.use("/user/profile",userProfileMiddleware());
+    middleware.use("/profile",userProfileMiddleware());
     return middleware;
 }

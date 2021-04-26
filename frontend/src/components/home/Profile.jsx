@@ -13,41 +13,25 @@ export default function Profile(props){
     const [edit,setedit]=useState(true);
     
     const {userdata}=props;
-    // console.log(userdata);
     var id=userdata.userProfile;
-    // console.log(id);
-    // const gender=profile.gender;
-   
+    // const [curruser,setuser]=useState({userName:userdata.userName,email:userdata.email,phoneNumber:userdata.phoneNumber});
+    const [user,setuser]=useState({});
+
     const startedit=()=>{
         setedit(!edit);
     }
-  
-    const updateProfile=async()=>{
-        const profiledata={
-            image:profile.image,
-            gender:profile.gender,
-            dob:profile.dob,
-            address:profile.address,
-            role:profile.role,
-            joining:profile.joining
-        }
-        console.log(profiledata);
-        await axios.put("http://localhost:5000/v1/user/profile/"+id,profiledata)
-        .then(res=>{
-            console.log(res);
-        })
-        .catch(err=>console.log(err));     
 
-        finduserprofile();
-    }
-    const handlechange=(property,event)=>{
-        const copydata={...profile};
-        copydata[property]=event.target.value;
-        setProfile(copydata);
-    }
+    const finduser=async()=>{
+        await  axios.get("http://localhost:5000/v1/user/"+userdata._id)
+          .then(res=>{
+              console.log(res);
+              setuser(res.data);
+          })
+          .catch(err=>console.log(err));
+      }
 
-    const finduserprofile=async()=>{
-        await  axios.get("http://localhost:5000/v1/user/profile/"+id)
+      const finduserprofile=async()=>{
+        await  axios.get("http://localhost:5000/v1/profile/"+id)
           .then(res=>{
               console.log(res.data[0]);
               const copyprofile=res.data[0];
@@ -63,9 +47,53 @@ export default function Profile(props){
           })
           .catch(err=>console.log(err));
       }
+    
+    const updateProfile=async()=>{
+        const profiledata={
+            image:profile.image,
+            gender:profile.gender,
+            dob:profile.dob,
+            address:profile.address,
+            role:profile.role,
+            joining:profile.joining
+        }
+        console.log(profiledata);
+        await axios.put("http://localhost:5000/v1/profile/"+id,profiledata)
+        .then(res=>{
+            console.log(res);
+        })
+        .catch(err=>console.log(err));  
+        const copyuserdata={
+            userName:user.userName,
+            email:user.email,
+            phoneNumber:user.phoneNumber
+        }
+        await axios.put("http://localhost:5000/v1/user/"+userdata._id,copyuserdata)
+        .then(data=>{
+            console.log(data);
+        //    setuser(data)
+        })
+        .catch(err=>console.log(err));
+        finduser();
+        finduserprofile();
+    }
+    const handlechange=(property,event)=>{
+        const copydata={...profile};
+        copydata[property]=event.target.value;
+        setProfile(copydata);
+    }
+    const handleuser=(property,ev)=>{
+        console.log(property+ev.target.value);
+        const copyuser={...user};
+        copyuser[property]=ev.target.value;
+        setuser(copyuser);
+    }
+
+    
 
       useEffect(()=>{
-          finduserprofile();
+        finduser();  
+        finduserprofile();
           // eslint-disable-next-line
       }, [])
     return (
@@ -84,9 +112,9 @@ export default function Profile(props){
               <img src={userimage} alt="fdsg" className="profilelogo" />
             }
             <input  disabled={edit?true:false} type="text" value={profile.image} placeholder="Profile Image" onChange={(ev)=>handlechange("image",ev)} />
-            <input disabled={edit?true:false} value={userdata.userName} className="userdata"/>
-            <input disabled={edit?true:false} value={userdata.email} className="userdata"/>
-            <input disabled={edit?true:false} value={userdata.phoneNumber} className="userdata"/>
+            <input disabled={edit?true:false}  className="userdata" value={user.userName} onChange={(ev)=>handleuser("userName",ev)}/>
+            <input disabled={edit?true:false}  className="userdata" value={user.email} onChange={(ev)=>handleuser("email",ev)}/>
+            <input disabled={edit?true:false}  className="userdata" value={user.phoneNumber} onChange={(ev)=>handleuser("phoneNumber",ev)}/>
             </div>
             <div>
                 <div className="gendercontainer">
@@ -120,7 +148,7 @@ export default function Profile(props){
                    <input type="date" disabled={edit?true:false} className="userdata profiledata" value={profile.joining}  onChange={(ev)=>handlechange("joining",ev)}/>
                 </div>
                <div>
-                   <button  disabled={edit?true:false} onClick={updateProfile}>Upadte Profile</button>
+                   <button  disabled={edit?true:false} onClick={updateProfile} className="updatebtn">Upadte Profile</button>
                </div>
             </div>
             </div>

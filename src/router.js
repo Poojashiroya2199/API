@@ -12,7 +12,7 @@ module.exports = ()=>{
     router.use("/department",deptController());
     router.use("/roles",rolesController());
     router.use("/user",userController());
-    router.use("/user/profile",userPrfileController());
+    router.use("/profile",userPrfileController());
     router.use("/",(req,res)=>{
         res.send("router");
     });
